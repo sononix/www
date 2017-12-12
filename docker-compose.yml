@@ -1,0 +1,31 @@
+version: "3.3"
+services:
+
+  # mysite1:
+  #   image: abiosoft/caddy
+  #   networks:
+  #     - frontend
+  #   # these labels are now to be found in the toml file
+  #   labels:
+  #     - "traefik.backend=mysite"
+  #     - "traefik.enable=true"
+  #     - "traefik.frontend.rule=Host:www.mysite1.com"
+  #     - "traefik.frontend.passHostHeader=true"
+  #     - "traefik.domain=mysite1.com"
+  #     - "traefik.frontend.entryPoints=http"
+  #   volumes:
+  #     - ./Caddyfile:/etc/Caddyfile
+  #     - ./site1:/srv/webapp/current/public
+  #   container_name: mysitecom
+
+
+
+    mysite1:
+        image: zzrot/alpine-caddy
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./Caddyfile:/etc/Caddyfile
+            - ./site1:/var/www/html
+            # - ./.caddy:/root/.caddy
