@@ -1,27 +1,3 @@
-mysite1.com {
+nua.media {
     proxy / 172.17.0.3:2368
 }
-
-Access Key ID
-AKIAJ23W5RKD4PGQO34A
-Secret Access Key:
-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
-
-
-
-AWS Account ID: 6966-6162-6491
-Canonical User ID: ce01f0d7c5b710eaafec20b6d279424acf4c06e49aee4300c04a3a57cb699f99
-
-
-ami-b02cd0c9
-
-
-
-working aws command line
-aws ec2 run-instances --image-id ami-b02cd0c9 --count 1 --instance-type t2.micro --key-name nua-key --security-groups nua-group
-
-
-once create you need to allocate an elastic IP --- manage instance > network > create EIP
-once create then need to allocate this IP with a running instance
-
-generally this can be done by selecting the EIP and associating the IP address to an available instance 
