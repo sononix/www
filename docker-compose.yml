@@ -49,7 +49,7 @@ services:
 #     #   placement:
 #     #     constraints: [node.role==manager]
 #
-# networks:
-#   frontend:
-#     external:
-#       name: traefik_webgateway
+networks:
+  frontend:
+    external:
+      name: traefik_webgateway
