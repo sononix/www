@@ -17,6 +17,8 @@ services:
       - ./Caddyfile:/etc/Caddyfile
       - ./site1:/srv/webapp/current/public
     container_name: nuamedia
+    ports:
+      - "80:80"
 
     # deploy:
     #   replicas: 1
