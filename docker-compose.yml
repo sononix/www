@@ -2,24 +2,33 @@ version: "3.3"
 services:
 
   mysite1:
-    image: abiosoft/caddy
-    networks:
-      - frontend
-    # these labels are now to be found in the toml file
-    labels:
-      - "traefik.backend=mysite1"
-      - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:nua.media"
-      - "traefik.frontend.passHostHeader=true"
-      - "traefik.domain=nua.media"
-      - "traefik.frontend.entryPoints=http"
-    volumes:
-      - ./Caddyfile:/etc/Caddyfile
-      - ./site1:/srv/webapp/current/public
-    container_name: nuamedia
+    image: ntboes/golang-gin
+    command: gin
     ports:
-      - "80:80"
-      - "443:443"
+     - "80:3000"
+    volumes:
+     - .site1:/go/src/app
+    # image: abiosoft/caddy
+    # networks:
+    #   - frontend
+    # # these labels are now to be found in the toml file
+    # labels:
+    #   - "traefik.backend=mysite1"
+    #   - "traefik.enable=true"
+    #   - "traefik.frontend.rule=Host:nua.media"
+    #   - "traefik.frontend.passHostHeader=true"
+    #   - "traefik.domain=nua.media"
+    #   - "traefik.frontend.entryPoints=http"
+    # volumes:
+    #   - ./Caddyfile:/etc/Caddyfile
+    #   - ./site1:/srv/webapp/current/public
+    # container_name: nuamedia
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
+
+
+
 
     # deploy:
     #   replicas: 1
