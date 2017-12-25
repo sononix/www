@@ -7,12 +7,12 @@ services:
       - frontend
     # these labels are now to be found in the toml file
     labels:
-      - "traefik.backend=nuamedia"
+      - "traefik.backend=mysite1"
       - "traefik.enable=true"
       - "traefik.frontend.rule=Host:nua.media"
       - "traefik.frontend.passHostHeader=true"
       - "traefik.domain=nua.media"
-      - "traefik.frontend.entryPoints=https"
+      - "traefik.frontend.entryPoints=http"
     volumes:
       - ./Caddyfile:/etc/Caddyfile
       - ./site1:/srv/webapp/current/public
