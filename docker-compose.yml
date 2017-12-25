@@ -21,35 +21,35 @@ services:
     # deploy:
     #   replicas: 1
 
-  traefik:
-    image: traefik:1.5
-    command: -c /dev/null --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
-    # command: --web \
-    #   --docker \
-    #   --docker.watch \
-    #   --docker.domain=mysite1.com \
-    #   --logLevel=DEBUG
-    networks:
-      - frontend
-    ports:
-      - "80:80"
-      - "443:443"
-      - "8081:8080"
-    labels:
-      - "traefik.passHostHeader=true"
-      - "traefik.accesslogsfile=/dev/stdout"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      # - /dev/null:/traefik.toml
-      - ./traefik.toml:/etc/traefik/traefik.toml
-      - ./acme.json:/acme.json
-      - ./logfiles:/dev/stdout
-    container_name: traefik
-    # deploy:
-    #   placement:
-    #     constraints: [node.role==manager]
-
-networks:
-  frontend:
-    external:
-      name: traefik_webgateway
+#   traefik:
+#     image: traefik:1.5
+#     command: -c /dev/null --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+#     # command: --web \
+#     #   --docker \
+#     #   --docker.watch \
+#     #   --docker.domain=mysite1.com \
+#     #   --logLevel=DEBUG
+#     networks:
+#       - frontend
+#     ports:
+#       - "80:80"
+#       - "443:443"
+#       - "8081:8080"
+#     labels:
+#       - "traefik.passHostHeader=true"
+#       - "traefik.accesslogsfile=/dev/stdout"
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock:ro
+#       # - /dev/null:/traefik.toml
+#       - ./traefik.toml:/etc/traefik/traefik.toml
+#       - ./acme.json:/acme.json
+#       - ./logfiles:/dev/stdout
+#     container_name: traefik
+#     # deploy:
+#     #   placement:
+#     #     constraints: [node.role==manager]
+#
+# networks:
+#   frontend:
+#     external:
+#       name: traefik_webgateway
