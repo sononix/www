@@ -12,13 +12,14 @@ services:
       - "traefik.frontend.rule=Host:nua.media"
       - "traefik.frontend.passHostHeader=true"
       - "traefik.domain=nua.media"
-      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.entryPoints=https"
     volumes:
       - ./Caddyfile:/etc/Caddyfile
       - ./site1:/srv/webapp/current/public
     container_name: nuamedia
     ports:
       - "80:80"
+      - "443:443"
 
     # deploy:
     #   replicas: 1
