@@ -1,3 +1,23 @@
 nua.media {
-    proxy / 172.17.0.3:2368
+    root /srv/webapp/current/public
+    header / Cache-Control "max-age=86400"
+    header / Content-Location "http://www.mysite1.com"
+    header / Date "Thu, 10 Dec 2017 18:57:23 GMT"
+    header / ETag ""
+    header / Expires "Thu, 13 Dec 2017 18:57:23 GMT"
+    header / Server "Cache Server"
+    header / Cookie "Cooook"
+    header / User-Agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36"
+    header / Accept "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+    header / Accept-Encoding "gzip, deflate"
+    header / Accept-Language "en-US,en;q=0.9,ga;q=0.8,la;q=0.7"
+    header / Cache-Control "max-age=0"
+    header / Cookie "_TRAEFIK_BACKEND=http://172.18.0.3:80"
+    header / Upgrade-Insecure-Requests "1"
+    header / X-Forwarded-For "172.17.0.1"
+    header / X-Forwarded-Host "www.mysite1.com"
+    header / X-Forwarded-Port "80"
+    header / X-Forwarded-Proto "http"
+    header / X-Forwarded-Server "e5b214b9ebbb"
+    header / X-Real-Ip "172.17.0.1"
 }

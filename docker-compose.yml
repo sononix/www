@@ -1,31 +1,55 @@
 version: "3.3"
 services:
 
-  # mysite1:
-  #   image: abiosoft/caddy
-  #   networks:
-  #     - frontend
-  #   # these labels are now to be found in the toml file
-  #   labels:
-  #     - "traefik.backend=mysite"
-  #     - "traefik.enable=true"
-  #     - "traefik.frontend.rule=Host:www.mysite1.com"
-  #     - "traefik.frontend.passHostHeader=true"
-  #     - "traefik.domain=mysite1.com"
-  #     - "traefik.frontend.entryPoints=http"
-  #   volumes:
-  #     - ./Caddyfile:/etc/Caddyfile
-  #     - ./site1:/srv/webapp/current/public
-  #   container_name: mysitecom
+  mysite1:
+    image: abiosoft/caddy
+    networks:
+      - frontend
+    # these labels are now to be found in the toml file
+    labels:
+      - "traefik.backend=nuamedia"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:nua.media"
+      - "traefik.frontend.passHostHeader=true"
+      - "traefik.domain=nua.media"
+      - "traefik.frontend.entryPoints=http"
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - ./site1:/srv/webapp/current/public
+    container_name: nuamedia
 
+    # deploy:
+    #   replicas: 1
 
+  traefik:
+    image: traefik:1.5
+    command: -c /dev/null --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    # command: --web \
+    #   --docker \
+    #   --docker.watch \
+    #   --docker.domain=mysite1.com \
+    #   --logLevel=DEBUG
+    networks:
+      - frontend
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8081:8080"
+    labels:
+      - "traefik.passHostHeader=true"
+      - "traefik.accesslogsfile=/dev/stdout"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # - /dev/null:/traefik.toml
+      - ./traefik.toml:/etc/traefik/traefik.toml
+      - ./acme.json:/acme.json
+      - ./logfiles:/dev/stdout
+    container_name: traefik
+    # deploy:
+    #   placement:
+    #     constraints: [node.role==manager]
 
-    mysite1:
-        image: zzrot/alpine-caddy
-        ports:
-            - 80:80
-            - 443:443
-        volumes:
-            - ./Caddyfile:/etc/Caddyfile
-            - ./site1:/var/www/html
-            # - ./.caddy:/root/.caddy
+networks:
+  frontend:
+    external:
+      name: traefik_webgateway
